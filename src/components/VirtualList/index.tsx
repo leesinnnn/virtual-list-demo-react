@@ -24,7 +24,10 @@ const VirtualList: React.FC<IVirtualListProps> = props => {
 
 
   const handleScroll: React.UIEventHandler<HTMLDivElement> = e => {
-    setScrollTop((e.target as any).scrollTop)
+    const { target } = e
+    requestAnimationFrame(() => {
+      setScrollTop((target as any).scrollTop)
+    })
   }
 
   return (
