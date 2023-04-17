@@ -6,6 +6,7 @@ import PropHeight from './components/PropHeight'
 import ReactiveHeight from './components/ReactiveHeight'
 import OptimizedReactiveHeight from './components/OptimizedReactiveHeight'
 import NormalList from './components/NormalList'
+import VirtualList from './components/VirtualList';
 import dataGen from './utils/data-generator'
 
 const data = dataGen()
@@ -67,15 +68,16 @@ export default function App () {
     )
   }, [])
 
-  const reactiveHeightItemRender = useCallback((item) => {
+  const reactiveHeightItemRender = useCallback(({ itemData }) => {
     return (
       <div style={{
         boxSizing: 'border-box',
-        height: `${50 + (item.index % 5) * 10}px`,
+        // height: `${50 + (itemData.index % 5) * 10}px`,
+        height: '50px',
         lineHeight: '50px',
         textAlign: 'center',
         border: '1px solid black'
-      }}>{item.value}</div>
+      }}>{itemData.value}</div>
     )
   }, [])
 
@@ -122,10 +124,11 @@ export default function App () {
             />
           </Route>
           <Route path="/reactive-height">
-            <ReactiveHeight
+            <VirtualList
               data={data}
-              estimatedItemHeight={50}
-              itemRender={reactiveHeightItemRender}
+              estimateItemHeight={50}
+              ItemRender={reactiveHeightItemRender}
+              containerHeight={520}
             />
           </Route>
           <Route path="/optimized-reactive-height">

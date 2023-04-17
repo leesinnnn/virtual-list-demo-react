@@ -1,0 +1,18 @@
+.virtual-list-container {
+  overflow: auto;
+  position: relative;
+  width: 300px;
+
+}
+
+.virtual-list-container-placeholder {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.virtual-list-container-content {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
